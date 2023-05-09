@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>なつやすみが終わるまで</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="2023年5月10日から2661年3月26日まで、15日間の夏休みを15532回繰り返すカウントダウンです。">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="なつやすみが終わるまで">
+    <meta name="twitter:description" content="2023年5月10日から2661年3月26日まで、15日間の夏休みを15532回繰り返すカウントダウンです。">
+    <meta name="twitter:image" content="https://random776.github.io/kacchan-uts2-22/pictures/natsuyasumi.jpeg">
+    <link rel="stylesheet" href="./base.css" />
+  </head>
+  <body>
+    <h2>なつやすみが終わるまで</h2>
+    <div id="margin">
+      <div id="bar"></div>
+    </div>
+    <div id="countdownArea" class="countdown">
+      <p>
+        <span>残り</span>
+        <span id="countdown-day" class="countdown-time"></span>日
+        <span id="countdown-hour" class="countdown-time"></span>時間
+        <span id="countdown-min" class="countdown-time"></span>分
+        <span id="countdown-sec" class="countdown-time"></span>秒
+      </p>
+      <p>今回は<span id="countdown-15" class="repeater"></span>回目です。</p>
+    </div>
+    <p style="margin: 10px">
+      ＊
+      2023年5月10日から2661年3月26日まで、15日間の夏休みを 15532 回繰り返すカウントダウンです。
+    </p>
+    <p style="margin: 10px">
+      ＊ 元ネタは
+      <a href="https://animeanime.jp/article/2020/07/28/55290.html" class="btn4"
+        >こちら</a
+      >
+      参照。（中の人も初めて知りました...）
+    </p>
+    <p style="margin: 10px">
+      ＊ このサイトの制作者「かっちゃん」へのお問い合わせは
+      <a
+        href="https://random776.github.io/kacchan-uts2-22/contact.html"
+        class="btn4"
+      >
+        こちら
+      </a>
+      から。
+    </p>
+  </body>
+  <script>
+    let countdown = setInterval(function () {
+      const now = new Date(); //今の日時
+      const target = new Date("2661/3/26 0:00:00");
+      const target2 = new Date("2023/5/10 0:00:00");
+      const remain_time = target - now; //差分を取る（ミリ秒で返ってくる）
+      const all_time = target - target2;
+      if (remain_time < 0) {
+        return false;
+      }
+      const dif15 = 15532 - Math.floor(remain_time / 1000 / 60 / 60 / 24 / 15);
+      const difDay = Math.floor(remain_time / 1000 / 60 / 60 / 24) % 15;
+      const difHour = Math.floor(remain_time / 1000 / 60 / 60) % 24;
+      const difMin = Math.floor(remain_time / 1000 / 60) % 60;
+      const difSec = Math.floor(remain_time / 1000) % 60;
+      document.getElementById("countdown-15").textContent = dif15;
+      document.getElementById("countdown-day").textContent = difDay;
+      document.getElementById("countdown-hour").textContent = difHour;
+      document.getElementById("countdown-min").textContent = difMin;
+      document.getElementById("countdown-sec").textContent = difSec;
+      const div = document.getElementById("bar");
+      div.style.width = `${
+        (((all_time - remain_time) % (1296000 * 1000)) / (1296000 * 1000)) * 99
+      }%`;
+      if (remain_time < 0) {
+        clearInterval(countdown);
+      }
+    }, 1000);
+  </script>
+</html>
